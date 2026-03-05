@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bezuban Charitable Trust | બેજુબાન ચેરીટેબલ ટ્રસ્ટ</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --saffron:#E8751A; --saffron-l:#FFF0E6; --saffron-d:#C05A08;
+  --forest:#1F6B3A;  --forest-l:#EBF5EF; --forest-d:#134827;
+  --navy:#142D55;    --navy-l:#EDF2FA;
+  --ink:#0F1923; --mist:#F7F8FA; --white:#FFFFFF;
+  --border:#E8EBF0; --muted:#6B7585;
+  --sh-sm:0 1px 4px rgba(0,0,0,.07);
+  --sh-md:0 4px 20px rgba(0,0,0,.09);
+  --sh-lg:0 12px 48px rgba(0,0,0,.12);
+  --r:14px; --r-sm:8px; --r-pill:999px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;line-height:1.6}
+
+/* LANG BAR */
+.lang-bar{background:var(--ink);color:rgba(255,255,255,.5);padding:8px 5%;display:flex;justify-content:flex-end;align-items:center;gap:12px;font-size:.78rem}
+.lang-toggle{display:flex;background:rgba(255,255,255,.1);border-radius:var(--r-pill);overflow:hidden;border:1px solid rgba(255,255,255,.15)}
+.lang-btn{padding:5px 16px;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
+.lang-btn.active{background:var(--saffron);color:#fff}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:999;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--sh-sm)}
+.nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.nav-ring{width:44px;height:44px;border-radius:50%;border:2.5px solid var(--saffron);background:var(--saffron-l);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.nb-t1{display:block;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;color:var(--ink)}
+.nb-t2{display:block;font-size:.68rem;font-weight:600;color:var(--saffron);letter-spacing:.06em;text-transform:uppercase}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;font-size:.88rem;font-weight:500;color:var(--muted);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--saffron)}
+.nav-cta{background:var(--saffron);color:#fff;border:none;cursor:pointer;padding:9px 22px;border-radius:var(--r-pill);font-weight:600;font-size:.87rem;font-family:'Outfit',sans-serif;text-decoration:none;transition:all .2s;box-shadow:0 3px 14px rgba(232,117,26,.35)}
+.nav-cta:hover{background:var(--saffron-d);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+.mob-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:998;background:#fff;border-bottom:1px solid var(--border);padding:16px 5%;flex-direction:column;box-shadow:var(--sh-md)}
+.mob-menu.open{display:flex}
+.mob-menu a{text-decoration:none;font-size:.95rem;font-weight:500;color:var(--ink);padding:13px 0;border-bottom:1px solid var(--border)}
+.mob-menu a:last-child{border:none;color:var(--saffron);font-weight:700}
+
+/* HERO */
+#hero{min-height:92vh;display:flex;align-items:center;background:linear-gradient(150deg,#0a2216 0%,#0e3120 45%,#0a1f3a 100%);padding:80px 5% 60px;position:relative;overflow:hidden}
+.h-gbg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px}
+.h-g1{position:absolute;top:-150px;right:-100px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(232,117,26,.18) 0%,transparent 65%)}
+.h-g2{position:absolute;bottom:-200px;left:-150px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(31,107,58,.15) 0%,transparent 65%)}
+.h-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center;width:100%;max-width:1200px;margin:0 auto}
+.h-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(232,117,26,.18);border:1px solid rgba(232,117,26,.35);color:#F9A462;padding:6px 16px;border-radius:var(--r-pill);font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:22px;animation:fadeUp .7s ease both}
+.h-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(2.6rem,5.5vw,4.4rem);color:#fff;line-height:1.08;margin-bottom:10px;animation:fadeUp .7s .1s ease both}
+.h-title .acc{color:var(--saffron);font-style:italic}
+.h-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2vw,1.4rem);color:rgba(255,255,255,.4);font-weight:400;margin-bottom:22px;animation:fadeUp .7s .18s ease both}
+.h-desc{font-size:1rem;color:rgba(255,255,255,.65);line-height:1.75;max-width:540px;margin-bottom:36px;animation:fadeUp .7s .26s ease both}
+.h-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .7s .34s ease both}
+.btn-s{background:var(--saffron);color:#fff;padding:13px 30px;border-radius:var(--r-pill);font-weight:700;font-size:.95rem;text-decoration:none;box-shadow:0 4px 20px rgba(232,117,26,.42);transition:all .2s}
+.btn-s:hover{background:var(--saffron-d);transform:translateY(-2px)}
+.btn-g{background:rgba(255,255,255,.08);color:#fff;padding:13px 30px;border-radius:var(--r-pill);font-weight:500;font-size:.95rem;text-decoration:none;border:1px solid rgba(255,255,255,.2);transition:all .2s}
+.btn-g:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+.h-stats{display:flex;gap:32px;margin-top:48px;flex-wrap:wrap;animation:fadeUp .7s .44s ease both}
+.hs-n{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:700;color:#fff;line-height:1}
+.hs-n span{color:var(--saffron)}
+.hs-l{font-size:.72rem;color:rgba(255,255,255,.45);font-weight:500;margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+.h-logo-wrap{width:290px;height:290px;border-radius:50%;background:#fff;border:6px solid rgba(232,117,26,.25);box-shadow:0 0 0 16px rgba(232,117,26,.07),0 20px 60px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;overflow:hidden;animation:fadeIn .9s .3s ease both;flex-shrink:0}
+.h-logo-wrap svg{width:88%;height:88%}
+
+/* SECTIONS */
+.sec{padding:88px 5%}
+.sec-mist{background:var(--mist)}
+.sec-white{background:var(--white)}
+.container{max-width:1160px;margin:0 auto}
+.chip{display:inline-block;padding:4px 14px;border-radius:var(--r-pill);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--saffron-l);color:var(--saffron);margin-bottom:14px}
+.chip.g{background:var(--forest-l);color:var(--forest)}
+.chip.n{background:var(--navy-l);color:var(--navy)}
+.s-head{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.8rem,3.2vw,2.6rem);line-height:1.15;margin-bottom:8px}
+.s-italic{font-size:.9rem;color:var(--saffron);font-weight:600;font-family:'Cormorant Garamond',serif;font-style:italic;margin-bottom:14px}
+.s-desc{color:var(--muted);font-size:.97rem;line-height:1.75;max-width:600px}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:52px}
+.a-blocks{display:flex;flex-direction:column;gap:16px}
+.abl{background:#fff;border-radius:var(--r);padding:24px 28px;border:1px solid var(--border);border-left:4px solid var(--saffron);transition:transform .25s,box-shadow .25s}
+.abl:hover{transform:translateX(5px);box-shadow:var(--sh-md)}
+.abl.g{border-left-color:var(--forest)}
+.abl.n{border-left-color:var(--navy)}
+.abl h3{font-size:.97rem;font-weight:700;margin-bottom:6px}
+.abl p{font-size:.88rem;color:var(--muted);line-height:1.65}
+.abl .note{font-size:.78rem;color:rgba(0,0,0,.3);font-style:italic;margin-top:4px}
+.info-panel{background:#fff;border-radius:var(--r);border:1px solid var(--border);overflow:hidden}
+.ip-head{background:linear-gradient(135deg,var(--ink),#1e3a5f);padding:24px 28px;color:#fff}
+.ip-head h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700}
+.ip-head p{font-size:.8rem;opacity:.55;margin-top:4px}
+.ip-row{display:flex;gap:14px;align-items:flex-start;padding:15px 28px;border-bottom:1px solid var(--border)}
+.ip-row:last-of-type{border-bottom:none}
+.ip-ico{font-size:1.1rem;margin-top:2px;flex-shrink:0}
+.ip-kv strong{display:block;font-size:.7rem;color:var(--saffron);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.ip-kv span{font-size:.9rem;color:var(--ink)}
+.cert-row{display:flex;gap:10px;padding:18px 28px}
+.cert{flex:1;text-align:center;padding:11px;border-radius:var(--r-sm);font-weight:700;font-size:.82rem;border:2px solid}
+.cert.s{color:var(--saffron);border-color:var(--saffron);background:var(--saffron-l)}
+.cert.g{color:var(--forest);border-color:var(--forest);background:var(--forest-l)}
+.cert.n{color:var(--navy);border-color:var(--navy);background:var(--navy-l)}
+
+/* ACTIVITIES */
+.act-hdr{text-align:center;margin-bottom:52px}
+.act-hdr .s-desc{margin:0 auto}
+.act-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.acard{background:#fff;border-radius:var(--r);padding:30px 26px;border:1px solid var(--border);transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden}
+.acard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--saffron);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.acard:hover::before{transform:scaleX(1)}
+.acard:hover{transform:translateY(-5px);box-shadow:var(--sh-lg);border-color:transparent}
+.acard.gv::before{background:var(--forest)}
+.acard.nv::before{background:var(--navy)}
+.a-ico{font-size:2rem;margin-bottom:16px;display:block}
+.acard h3{font-size:1rem;font-weight:700;margin-bottom:5px}
+.acard .sub{font-size:.78rem;color:var(--saffron);font-weight:600;margin-bottom:8px}
+.acard .sub.g{color:var(--forest)}
+.acard p{font-size:.87rem;color:var(--muted);line-height:1.65}
+
+/* STATS */
+.stat-strip{background:linear-gradient(135deg,var(--forest-d),var(--forest));padding:64px 5%}
+.stat-strip-in{max-width:1100px;margin:0 auto}
+.stat-hdr{text-align:center;margin-bottom:44px}
+.stat-hdr h2{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:#fff}
+.stat-hdr p{color:rgba(255,255,255,.5);font-size:.85rem;margin-top:6px}
+.stat-cards{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.sc{background:rgba(255,255,255,.1);border-radius:var(--r);padding:24px 14px;text-align:center;border:1px solid rgba(255,255,255,.12);transition:background .25s}
+.sc:hover{background:rgba(255,255,255,.17)}
+.sc-n{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;color:#fff;line-height:1}
+.sc-c{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.4);margin:4px 0 6px}
+.sc-l{font-size:.82rem;color:rgba(255,255,255,.75);font-weight:500}
+
+/* DONATE */
+.don-wrap{background:linear-gradient(150deg,#0c1f38,#142d55);padding:88px 5%;position:relative;overflow:hidden}
+.don-bg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.03) 1px,transparent 1px);background-size:28px 28px}
+.don-in{position:relative;z-index:2;max-width:1100px;margin:0 auto}
+.don-hdr{text-align:center;margin-bottom:52px}
+.don-hdr .s-head{color:#fff}
+.don-hdr .s-desc{color:rgba(255,255,255,.5);margin:0 auto}
+.don-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:26px}
+.dcard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:36px;backdrop-filter:blur(10px)}
+.dcard h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.br{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06);gap:12px}
+.br:last-of-type{border-bottom:none}
+.br-k{font-size:.73rem;color:rgba(255,255,255,.4);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.br-v{font-size:.93rem;color:#fff;font-weight:500;text-align:right}
+.br-v.code{color:#F9A462;font-size:1rem;font-weight:700;letter-spacing:.04em}
+.cert-strip{display:flex;gap:12px;margin-top:22px}
+.ctag{flex:1;text-align:center;padding:12px;border-radius:var(--r-sm);border:1px solid rgba(232,117,26,.3);background:rgba(232,117,26,.12)}
+.ctag-n{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--saffron)}
+.ctag-l{font-size:.65rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+.schemes{}
+.scheme{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.scheme:last-child{border-bottom:none}
+.sch-l{font-size:.87rem;color:rgba(255,255,255,.75);line-height:1.45}
+.sch-l .gn{display:block;font-size:.75rem;color:rgba(255,255,255,.3);margin-top:3px}
+.sch-a{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--saffron);white-space:nowrap}
+.don-note{color:rgba(255,255,255,.3);font-size:.77rem;margin-top:18px}
+
+/* CONTACT */
+.con-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;margin-top:52px;align-items:start}
+.ci{display:flex;gap:16px;margin-bottom:26px}
+.ci-ico{width:48px;height:48px;border-radius:12px;background:var(--saffron-l);border:1px solid rgba(232,117,26,.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.ci-t strong{display:block;font-size:.7rem;color:var(--saffron);font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:3px}
+.ci-t span,.ci-t a{font-size:.92rem;color:var(--ink);text-decoration:none;line-height:1.55;transition:color .2s}
+.ci-t a:hover{color:var(--saffron)}
+.ci-t .note{display:block;font-size:.78rem;color:var(--muted);margin-top:2px}
+.hl-card{background:linear-gradient(135deg,var(--saffron),var(--saffron-d));border-radius:var(--r);padding:36px;text-align:center;color:#fff;box-shadow:0 8px 32px rgba(232,117,26,.3);margin-bottom:16px}
+.hl-tag{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:8px}
+.hl-num{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;line-height:1}
+.hl-num a{color:#fff;text-decoration:none}
+.hl-sub{font-size:.82rem;opacity:.7;margin-top:6px}
+.hl-card2{border-radius:var(--r);padding:26px;text-align:center;background:var(--mist);border:2px solid var(--border)}
+.hl-card2 .hl-tag{color:var(--muted)}
+.hl-card2 .hl-num{font-size:2rem;color:var(--navy)}
+.hl-card2 .hl-num a{color:var(--navy);text-decoration:none}
+.hl-card2 .hl-sub{color:var(--muted)}
+.soc-row{display:flex;gap:12px;margin-top:24px}
+.soc{width:44px;height:44px;border-radius:12px;border:1.5px solid var(--border);background:var(--mist);display:flex;align-items:center;justify-content:center;font-size:1.1rem;text-decoration:none;transition:all .2s}
+.soc:hover{background:var(--saffron);border-color:var(--saffron);transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.4);padding:40px 5%;border-top:3px solid var(--saffron)}
+.ft-in{max-width:1160px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.ft-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:#fff}
+.ft-guj{font-size:.88rem;color:rgba(255,255,255,.3)}
+.ft-nav{display:flex;gap:24px;flex-wrap:wrap;justify-content:center}
+.ft-nav a{color:rgba(255,255,255,.4);text-decoration:none;font-size:.83rem;transition:color .2s}
+.ft-nav a:hover{color:var(--saffron)}
+.ft-meta{font-size:.78rem;line-height:1.8}
+.ft-meta strong{color:rgba(255,255,255,.65)}
+.ft-quote{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:rgba(255,255,255,.3)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+.rv.in{opacity:1;transform:none}
+.rvl{opacity:0;transform:translateX(-22px);transition:opacity .65s ease,transform .65s ease}
+.rvl.in{opacity:1;transform:none}
+.rvr{opacity:0;transform:translateX(22px);transition:opacity .65s ease,transform .65s ease}
+.rvr.in{opacity:1;transform:none}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .act-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-cards{grid-template-columns:repeat(3,1fr)}
+  .h-inner{grid-template-columns:1fr}
+  .h-logo-wrap{display:none}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .about-grid,.don-grid,.con-grid{grid-template-columns:1fr}
+  .act-grid{grid-template-columns:1fr}
+  .stat-cards{grid-template-columns:repeat(2,1fr)}
+  .sec{padding:64px 4%}
+  .h-title{font-size:2.4rem}
+  #hero{padding:90px 4% 60px}
+}
+
+/* LANG VISIBILITY */
+.et,.eo{} /* English text / English only */
+.gt,.go{} /* Gujarati text / Gujarati only */
+</style>
+</head>
+<body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <span class="eo">Select Language:</span>
+  <span class="go">ભાષા પસંદ કરો:</span>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">English</button>
+    <button class="lang-btn" id="btn-gu" onclick="setLang('gu')">ગુજરાતી</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#hero">
+    <div class="nav-ring">🐾</div>
+    <div>
+      <span class="nb-t1 et">Bezuban Charitable Trust</span>
+      <span class="nb-t1 gt">બેજુબાન ચેરીટેબલ ટ્રસ્ટ</span>
+      <span class="nb-t2 et">Animals & Bird Helpline</span>
+      <span class="nb-t2 gt">પશુ-પ્રાણી-પક્ષી હેલ્પલાઈન</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hero"><span class="et">Home</span><span class="gt">હોમ</span></a></li>
+    <li><a href="#about"><span class="et">About</span><span class="gt">અમારા વિશે</span></a></li>
+    <li><a href="#activities"><span class="et">Activities</span><span class="gt">પ્રવૃત્તિઓ</span></a></li>
+    <li><a href="#donate"><span class="et">Donate</span><span class="gt">દાન</span></a></li>
+    <li><a href="#contact"><span class="et">Contact</span><span class="gt">સંપર્ક</span></a></li>
+  </ul>
+  <a class="nav-cta" href="#donate"><span class="et">Donate Now</span><span class="gt">દાન કરો</span></a>
+  <div class="hamburger" onclick="toggleMob()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <a href="#hero" onclick="toggleMob()"><span class="et">Home</span><span class="gt">હોમ</span></a>
+  <a href="#about" onclick="toggleMob()"><span class="et">About</span><span class="gt">અમારા વિશે</span></a>
+  <a href="#activities" onclick="toggleMob()"><span class="et">Activities</span><span class="gt">પ્રવૃત્તિઓ</span></a>
+  <a href="#donate" onclick="toggleMob()"><span class="et">Donate</span><span class="gt">દાન</span></a>
+  <a href="#contact" onclick="toggleMob()"><span class="et">Contact & Donate →</span><span class="gt">સંપર્ક & દાન →</span></a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-gbg"></div><div class="h-g1"></div><div class="h-g2"></div>
+  <div class="h-inner">
+    <div>
+      <div class="h-pill">🐾 <span class="et">Animals & Bird Helpline · Ahmedabad</span><span class="gt">પ.પ્રા.પ. હેલ્પલાઈન · અમદાવાદ</span></div>
+      <h1 class="h-title">
+        <span class="et">Voicing the<br><span class="acc">Voiceless</span></span>
+        <span class="gt">બેજુબાન જીવોની<br><span class="acc">આરોગ્ય ભક્તિ</span></span>
+      </h1>
+      <p class="h-sub et">|| Sarve Santu Niramaya || — Since 2021</p>
+      <p class="h-sub gt">|| સર્વે સન્તુ નિરામયા: || — ૨૦૨૧ થી</p>
+      <p class="h-desc">
+        <span class="et">Bezuban Charitable Trust provides completely free rescue, treatment and hospital care for sick, injured and helpless animals and birds across Ahmedabad — because they cannot speak for themselves.</span>
+        <span class="gt">બેજુબાન ચેરીટેબલ ટ્રસ્ટ સમગ્ર અમદાવાદ ભરમાં બીમાર, અકસ્માતગ્રસ્ત અને અશક્ત પશુ-પ્રાણી-પક્ષીઓને સંપૂર્ણ નિ:શુલ્ક બચાવ, સારવાર અને હોસ્પિટલ સેવા આપે છે.</span>
+      </p>
+      <div class="h-btns">
+        <a class="btn-s" href="#donate"><span class="et">💛 Donate Now</span><span class="gt">💛 દાન કરો</span></a>
+        <a class="btn-g" href="#activities"><span class="et">Our Work →</span><span class="gt">અમારી પ્રવૃત્તિઓ →</span></a>
+      </div>
+      <div class="h-stats">
+        <div><div class="hs-n">10,259<span>+</span></div><div class="hs-l et">On-Site Treatments</div><div class="hs-l gt">સ્થળ સારવાર</div></div>
+        <div><div class="hs-n">6,031<span>+</span></div><div class="hs-l et">Hospital Treatments</div><div class="hs-l gt">હોસ્પિટલ સારવાર</div></div>
+        <div><div class="hs-n">3</div><div class="hs-l et">Ambulances</div><div class="hs-l gt">એમ્બ્યુલન્સ</div></div>
+        <div><div class="hs-n">7<span>+</span></div><div class="hs-l et">Years of Service</div><div class="hs-l gt">સેવાનાં વર્ષ</div></div>
+      </div>
+    </div>
+    <div class="h-logo-wrap">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="95" fill="#fff" stroke="#E8751A" stroke-width="4"/>
+        <ellipse cx="72" cy="108" rx="30" ry="42" fill="#2E8B3A"/>
+        <ellipse cx="112" cy="98" rx="35" ry="46" fill="#2E8B3A" opacity=".9"/>
+        <ellipse cx="92" cy="126" rx="23" ry="27" fill="white"/>
+        <ellipse cx="142" cy="66" rx="19" ry="19" fill="#2E8B3A" opacity=".75"/>
+        <path d="M142 47 Q152 35 160 43 Q155 39 142 47Z" fill="#2E8B3A"/>
+        <text x="100" y="172" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#0F1923">BEZUBAN</text>
+        <text x="100" y="184" text-anchor="middle" font-family="Georgia,serif" font-size="7.5" fill="#C0392B">CHARITABLE TRUST</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec sec-mist">
+  <div class="container">
+    <div class="rv">
+      <div class="chip et">About Us</div><div class="chip gt">અમારા વિશે</div>
+      <h2 class="s-head et">A Hospital for Those Who<br>Cannot Ask for Help</h2>
+      <h2 class="s-head gt">અબોલ જીવોની બોલતી<br>દુવાઓનું પ્રાસ્થિસ્થાન</h2>
+      <p class="s-italic et">|| Sarve Santu Niramaya || — May all beings be free from suffering</p>
+      <p class="s-italic gt">|| સર્વે સન્તુ નિરામયા: ||</p>
+      <p class="s-desc et">For over 7 years, Bezuban Charitable Trust has been rescuing, treating and caring for sick, accident-prone and helpless animals and birds across Ahmedabad — completely free of charge.</p>
+      <p class="s-desc gt">છેલ્લા સાત વર્ષથી, બેજુબાન ચેરીટેબલ ટ્રસ્ટ અમદાવાદ ભરમાં બીમાર, અકસ્માતગ્રસ્ત અને અશક્ત પશુ-પ્રાણી-પક્ષીઓની નિ:શુલ્ક સારવાર, બચાવ અને સેવા કરે છે.</p>
+    </div>
+    <div class="about-grid">
+      <div class="a-blocks rvl">
+        <div class="abl">
+          <h3>🏥 <span class="et">Animal Hospital</span><span class="gt">પશુ હોસ્પિટલ</span></h3>
+          <p class="et">Fully equipped veterinary hospital at Valad, Nana Chiloda, Gandhinagar with modern OT, hydraulic table and physiotherapy — all completely free.</p>
+          <p class="gt">વ્લાડ, ગાંધીનગર ખાતે સ્ટેટ-ઓફ-ધ-આર્ટ પશુ હોસ્પિટલ — ઓપરેશન, હાઈડ્રોલિક ટેબલ, ફિઝિયો — સ્ઞ:શુ.</p>
+          <p class="note et">Plot 468, Fulpura Gam Road, Valad, Gandhinagar – 382355</p>
+          <p class="note gt">પ્લોટ ૪૬૮, ફુલપુરા ગામ રોડ, વ્લાડ, ગાંધીનગર</p>
+        </div>
+        <div class="abl g">
+          <h3>🚑 <span class="et">Mobile Clinic (Ambulances)</span><span class="gt">મોબાઈલ ક્લિનિક</span></h3>
+          <p class="et">3 ambulances including a hydraulic Bolero for large animals. Our vets travel to the animal's location anywhere in Ahmedabad — fast and free.</p>
+          <p class="gt">ત્રણ એમ્બ્યુલન્સ — હાઈડ્રોલિક બોલેરો સહ. ડૉક્ટર ટીમ સ્થળ પર સારવાર — ઝડpah, નિ:શુ.</p>
+        </div>
+        <div class="abl n">
+          <h3>🐦 <span class="et">Bird Rescue & Uttarayan Camp</span><span class="gt">પક્ષી બચાવ & ઉત્તરાયણ</span></h3>
+          <p class="et">Emergency camps during Makar Sankranti for birds injured by manja strings — hundreds saved every year through on-the-spot surgery and care.</p>
+          <p class="gt">મકર સંક્રાંતિ પર દોરીથી ઘાયલ પક્ષી — અસ્થાeyi ઇmr. કેatmp, oped., ​care — ​annual hundreds saved.</p>
+        </div>
+      </div>
+      <div class="rvr">
+        <div class="info-panel">
+          <div class="ip-head">
+            <h3 class="et">Trust Details</h3><h3 class="gt">ટ્રસ્ટ વિગત</h3>
+            <p class="et">Registration, Contact & Credentials</p><p class="gt">નોંધણી, સંmparkr & lic.</p>
+          </div>
+          <div class="ip-row"><div class="ip-ico">📋</div><div class="ip-kv"><strong>Reg. No.</strong><span>E/22904/AHMEDABAD</span></div></div>
+          <div class="ip-row"><div class="ip-ico">🆔</div><div class="ip-kv"><strong>PAN</strong><span>AAETB1212F</span></div></div>
+          <div class="ip-row">
+            <div class="ip-ico">📍</div>
+            <div class="ip-kv">
+              <strong class="et">Hospital Address</strong><strong class="gt">સernamun</strong>
+              <span>Plot 468, Fulpura Gam Road, Valad, Nana Chiloda, Gandhinagar – 382355</span>
+            </div>
+          </div>
+          <div class="ip-row"><div class="ip-ico">📧</div><div class="ip-kv"><strong>Email</strong><span>bezubancharitabletrust@gmail.com</span></div></div>
+          <div class="ip-row"><div class="ip-ico">📱</div><div class="ip-kv"><strong class="et">Social Media</strong><strong class="gt">સocial</strong><span>@bezuban_charitable_trust</span></div></div>
+          <div class="cert-row">
+            <div class="cert s">80-G (5)</div>
+            <div class="cert g">CSR</div>
+            <div class="cert n et">Tax Exempt</div>
+            <div class="cert n gt">કmodify</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section id="activities" class="sec sec-white">
+  <div class="container">
+    <div class="act-hdr rv">
+      <div class="chip g et">What We Do</div><div class="chip g gt">પ્ras.theano</div>
+      <h2 class="s-head et">Our Life-Saving Activities</h2>
+      <h2 class="s-head gt">જીવ-બચાવ પ્ravar</h2>
+      <p class="s-desc et">From rescuing animals trapped in wells and drains to performing complex surgeries — our team is available 24/7 for every voiceless creature.</p>
+      <p class="s-desc gt">ગengl, kuvah, accidental — 24 km team ready. oper. to gherasarvar.</p>
+    </div>
+    <div class="act-grid">
+      <div class="acard rv"><span class="a-ico">🆘</span>
+        <h3 class="et">Rescue Operations</h3><h3 class="gt">બchav Kzamagiri</h3>
+        <p class="sub et">Drains · Wells · Trees · Anywhere</p><p class="sub gt">ggitar · kuvah · Zad · koipan jagya</p>
+        <p class="et">Animals trapped in drains, wells, pits, trees, canals and construction sites are safely rescued by our trained team using specialised equipment.</p>
+        <p class="gt">ggitar, kuvah, pal, kanal, slabs ma fasayela prani — team specialised equipment sathe safety rescue kare che.</p>
+      </div>
+      <div class="acard gv rv"><span class="a-ico">🚐</span>
+        <h3 class="et">Mobile Veterinary Clinic</h3><h3 class="gt">Mobile Clinic</h3>
+        <p class="sub g et">On-site treatment anywhere in Ahmedabad</p><p class="sub g gt">sthal sarvar — Amad. bhar</p>
+        <p class="et">Our mobile health van carries a skilled doctor team directly to the animal's location — no transport needed. Fast, free, and thorough on-spot care.</p>
+        <p class="gt">Mobile Doctor Team prani na sthale j sarvar — ek pan rupyo nahi. Zaldpi, nih., kushal.</p>
+      </div>
+      <div class="acard nv rv"><span class="a-ico">🏥</span>
+        <h3 class="et">Hospital & Surgery</h3><h3 class="gt">Hospital & Operation</h3>
+        <p class="sub et">Modern OT · Hydraulic Table · Physio</p><p class="sub gt">Modern OT · Hydraulic Table</p>
+        <p class="et">Complex surgeries — tumour removal, fracture plating, eye operations, physiotherapy — performed by expert vets at zero cost.</p>
+        <p class="gt">Tumor, fracture, eye-op, physio — state-of-art hospital ma expert vets, sambampoorna nihshulk.</p>
+      </div>
+      <div class="acard rv"><span class="a-ico">🐦</span>
+        <h3 class="et">Bird Rescue (Uttarayan)</h3><h3 class="gt">Pakshi Bachav (Uttarayan)</h3>
+        <p class="sub et">Makar Sankranti Emergency Camps</p><p class="sub gt">Makar Sankranti Camp</p>
+        <p class="et">During Makar Sankranti thousands of birds are injured by manja strings. We run emergency camps and perform surgeries to save hundreds each year.</p>
+        <p class="gt">Makar Sankranti par dori thi ghayel pakshi — asthay camp, oper, care — hajar bachya darvarsh.</p>
+      </div>
+      <div class="acard gv rv"><span class="a-ico">🐄</span>
+        <h3 class="et">Large Animal Rescue</h3><h3 class="gt">Mota Pashu Bachav</h3>
+        <p class="sub g et">Hydraulic Bolero Ambulance</p><p class="sub g gt">Hydraulic Bolero Ambulance</p>
+        <p class="et">Our hydraulic Bolero ambulance specially lifts and transports cows, bulls and large animals with fractures or accident injuries for treatment.</p>
+        <p class="gt">Fracture, accident — Gai, Balad ne Hydraulic Bolero uthaavi hospital laye che — nih.</p>
+      </div>
+      <div class="acard nv rv"><span class="a-ico">💧</span>
+        <h3 class="et">Community Care</h3><h3 class="gt">Samaj Seva</h3>
+        <p class="sub et">Feeding · Water Bowls · Vaccination</p><p class="sub gt">Khoral · Pani · Rasikaran</p>
+        <p class="et">Free water bowls for birds in summer, daily grain at the hospital, booster vaccines for rescued animals, and special feeding on religious occasions.</p>
+        <p class="gt">Ounala ma pakshi mate nihshulk pani kunda, chan, dharamik prsange mo-mithu, nihshulk vaccination.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stat-strip">
+  <div class="stat-strip-in">
+    <div class="stat-hdr rv">
+      <h2 class="et">Healthcare Delivered — Statistics (as of 31 May 2025)</h2>
+      <h2 class="gt">Aarogya Bhakti — Aankda (31/05/2025 sudhi)</h2>
+      <p class="et">All treatments provided completely free of cost · Funded by generous donors</p>
+      <p class="gt">Sampurna nihshulk sarvar · Udal datao na sahyog thi</p>
+    </div>
+    <div class="stat-cards rv">
+      <div class="sc"><div class="sc-n">4,587</div><div class="sc-c et">On-Site</div><div class="sc-c gt">Sthal</div><div class="sc-l et">Cattle</div><div class="sc-l gt">Pashu</div></div>
+      <div class="sc"><div class="sc-n">5,582</div><div class="sc-c et">On-Site</div><div class="sc-c gt">Sthal</div><div class="sc-l et">Animals</div><div class="sc-l gt">Prani</div></div>
+      <div class="sc"><div class="sc-n">90</div><div class="sc-c et">On-Site</div><div class="sc-c gt">Sthal</div><div class="sc-l et">Birds</div><div class="sc-l gt">Pakshi</div></div>
+      <div class="sc"><div class="sc-n">1,438</div><div class="sc-c et">Hospital</div><div class="sc-c gt">Hospital</div><div class="sc-l et">Cattle</div><div class="sc-l gt">Pashu</div></div>
+      <div class="sc"><div class="sc-n">969</div><div class="sc-c et">Hospital</div><div class="sc-c gt">Hospital</div><div class="sc-l et">Animals</div><div class="sc-l gt">Prani</div></div>
+      <div class="sc"><div class="sc-n">3,624</div><div class="sc-c et">Hospital</div><div class="sc-c gt">Hospital</div><div class="sc-l et">Birds</div><div class="sc-l gt">Pakshi</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- DONATE -->
+<section id="donate" class="don-wrap">
+  <div class="don-bg"></div>
+  <div class="don-in">
+    <div class="don-hdr rv">
+      <div class="chip et">Support Our Mission</div><div class="chip gt">Mission ne Support Karo</div>
+      <h2 class="s-head">
+        <span class="et">Donate to Save a Voiceless Life</span>
+        <span class="gt">Ek Abol Jiv Bachavo</span>
+      </h2>
+      <p class="s-desc et">Every rupee you donate keeps our hospital running, ambulances fuelled, and animals alive. Your support is a blessing from a voiceless creature.</p>
+      <p class="s-desc gt">Tmnaro dareko rupai hospital, ambulance ane abol jiv bachavvama vapray che. Aa abol jivoni bolti duvaon che.</p>
+    </div>
+    <div class="don-grid rv">
+      <div class="dcard">
+        <h3>🏦 <span class="et">Bank Transfer Details</span><span class="gt">Bank Vigat</span></h3>
+        <div class="br"><span class="br-k et">Account Name</span><span class="br-k gt">Khatanu Nam</span><span class="br-v">Bezuban Charitable Trust</span></div>
+        <div class="br"><span class="br-k et">Bank</span><span class="br-k gt">Bank</span><span class="br-v">State Bank of India</span></div>
+        <div class="br"><span class="br-k et">Branch</span><span class="br-k gt">Shakha</span><span class="br-v">Sardarnagar, Ahmedabad</span></div>
+        <div class="br"><span class="br-k et">Account No.</span><span class="br-k gt">Khata No.</span><span class="br-v code">39597419705</span></div>
+        <div class="br"><span class="br-k">IFSC</span><span class="br-v code">SBIN0016029</span></div>
+        <div class="cert-strip">
+          <div class="ctag"><div class="ctag-n">80-G</div><div class="ctag-l et">Tax Exemption</div><div class="ctag-l gt">Kar Mukti</div></div>
+          <div class="ctag"><div class="ctag-n">CSR</div><div class="ctag-l et">CSR Eligible</div><div class="ctag-l gt">CSR Yogya</div></div>
+        </div>
+        <p class="don-note et">Please make cheque / draft in favour of "Bezuban Charitable Trust"</p>
+        <p class="don-note gt">Cheque/Draft "Bezuban Charitable Trust" na name moklava</p>
+      </div>
+      <div class="dcard">
+        <h3>🌟 <span class="et">Donation Schemes</span><span class="gt">Dan Sahyog Yojana</span></h3>
+        <div class="schemes">
+          <div class="scheme">
+            <div class="sch-l">
+              <span class="et">Bezuban Akshay Kosh — Permanent Reserve Fund</span>
+              <span class="gt">Bezuban Akshay Kosh — Kayami Anamat Fund</span>
+              <span class="gn et">(Name listed permanently, only interest used)</span>
+              <span class="gn gt">(Nam kayam nondh, matra vyaj vapray)</span>
+            </div>
+            <span class="sch-a">₹1,00,000</span>
+          </div>
+          <div class="scheme">
+            <div class="sch-l">
+              <span class="et">Hospital Operations — Monthly Primary Benefactor</span>
+              <span class="gt">Hospital Sanchalan — Mukhy Labharthi</span>
+            </div>
+            <span class="sch-a">₹1,00,000</span>
+          </div>
+          <div class="scheme">
+            <div class="sch-l">
+              <span class="et">Hospital Operations — Monthly Co-Benefactor</span>
+              <span class="gt">Hospital Sanchalan — Sah-Labharthi</span>
+            </div>
+            <span class="sch-a">₹51,000</span>
+          </div>
+          <div class="scheme">
+            <div class="sch-l">
+              <span class="et">Special Occasions — Birthday, Anniversary, Religious Events</span>
+              <span class="gt">Janma, Lagna, Dharmik, Utsav Prasang</span>
+            </div>
+            <span class="sch-a et">Any Amount</span>
+            <span class="sch-a gt">Ichha Rashi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec sec-white">
+  <div class="container">
+    <div class="rv">
+      <div class="chip n et">Get in Touch</div><div class="chip n gt">Sampark Karo</div>
+      <h2 class="s-head et">Reach Out to Us</h2>
+      <h2 class="s-head gt">Amaro Sampark Karo</h2>
+      <p class="s-desc et">Found an injured animal? Want to donate or volunteer? We are here 24/7 for every voiceless creature.</p>
+      <p class="s-desc gt">Ghayel prani joyu? Dan ya seva? Ame 24/7 available chhe.</p>
+    </div>
+    <div class="con-grid">
+      <div class="rvl">
+        <div class="ci">
+          <div class="ci-ico">📍</div>
+          <div class="ci-t">
+            <strong class="et">Hospital Address</strong><strong class="gt">Hospital Sarnamu</strong>
+            <span>Plot No. 468, Fulpura Gam Road, Valad, Nana Chiloda, Ta.Ji. Gandhinagar – 382355</span>
+            <span class="note gt">Plot No. 468, Fulpura Gam Road, Valad, Nana Chiloda, Gandhinagar</span>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-ico">📧</div>
+          <div class="ci-t">
+            <strong>Email</strong>
+            <a href="mailto:bezubancharitabletrust@gmail.com">bezubancharitabletrust@gmail.com</a>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-ico">🧑‍💼</div>
+          <div class="ci-t">
+            <strong class="et">Donation — Jigneshbhai Panchal</strong>
+            <strong class="gt">Dan — Jigneshbhai Panchal</strong>
+            <a href="tel:9714135771">+91 97141 35771</a>
+            <span class="note et">C-183, Vibhag-7, Parshwanath Township, Nava Naroda, Ahmedabad – 382 345</span>
+            <span class="note gt">C-183, Vibhag-7, Parshwanath Township, Nava Naroda, Ahmedabad</span>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-ico">🧑‍💼</div>
+          <div class="ci-t">
+            <strong class="et">Donation — Jayeshbhai Bhimani</strong>
+            <strong class="gt">Dan — Jayeshbhai Bhimani</strong>
+            <a href="tel:9879161454">+91 98791 61454</a>
+            <span class="note et">J.J. Organisation, Gandhi Road, Ahmedabad – 380 001</span>
+            <span class="note gt">J.J. Organisation, Gandhi Road, Ahmedabad – 380 001</span>
+          </div>
+        </div>
+        <div class="soc-row">
+          <a class="soc" href="#" title="Instagram">📸</a>
+          <a class="soc" href="#" title="Facebook">👤</a>
+          <a class="soc" href="#" title="YouTube">▶️</a>
+          <a class="soc" href="https://wa.me/918866421316" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="rvr">
+        <div class="hl-card">
+          <div class="hl-tag et">🐾 Animal Emergency Helpline</div>
+          <div class="hl-tag gt">🐾 Prani Emergency Helpline</div>
+          <div class="hl-num"><a href="tel:8866421316">88664 21316</a></div>
+          <div class="hl-sub et">WhatsApp / Call · Available 24 / 7</div>
+          <div class="hl-sub gt">WhatsApp / Phone · 24/7 Available</div>
+        </div>
+        <div class="hl-card2">
+          <div class="hl-tag et">Special Information Line</div>
+          <div class="hl-tag gt">Vishesh Mahiti Number</div>
+          <div class="hl-num"><a href="tel:9714135771">97141 35771</a></div>
+          <div class="hl-sub et">Donations & General Enquiries</div>
+          <div class="hl-sub gt">Dan & Samanya Mahiti</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-in">
+    <div class="ft-name">Bezuban Charitable Trust</div>
+    <div class="ft-guj">બેજુબાન ચેરીટેબલ ટ્રસ્ટ — અબોલ જીવોની બોલતી દુવાઓનું પ્રાસ્‍થિ‍સ‍થ‍ાન</div>
+    <div class="ft-nav">
+      <a href="#hero"><span class="et">Home</span><span class="gt">Home</span></a>
+      <a href="#about"><span class="et">About</span><span class="gt">About</span></a>
+      <a href="#activities"><span class="et">Activities</span><span class="gt">Activities</span></a>
+      <a href="#donate"><span class="et">Donate</span><span class="gt">Donate</span></a>
+      <a href="#contact"><span class="et">Contact</span><span class="gt">Contact</span></a>
+    </div>
+    <div class="ft-meta">
+      <strong>Reg. No.: E/22904/AHMEDABAD</strong> &nbsp;|&nbsp; <strong>PAN: AAETB1212F</strong><br>
+      80-G (5) &amp; CSR Certified · <span class="et">Donations are tax-exempt</span><span class="gt">Dan kar-mukt che</span>
+    </div>
+    <div class="ft-quote">"Sarve Santu Niramaya" — || સ‍ર‍્‍વ‍ે સ‍ન‍્‍ત‍ુ ન‍િ‍ર‍ા‍મ‍ય‍ા‍: ||</div>
+    <div style="font-size:.75rem">© 2025 Bezuban Charitable Trust. <span class="et">All rights reserved.</span><span class="gt">Sarv Hakk Surakshit.</span></div>
+  </div>
+</footer>
+
+<script>
+// Language toggle
+function setLang(lang){
+  document.querySelectorAll('.et').forEach(el=>el.style.display=lang==='en'?'':'none');
+  document.querySelectorAll('.gt').forEach(el=>el.style.display=lang==='gu'?'':'none');
+  document.querySelectorAll('.eo').forEach(el=>el.style.display=lang==='en'?'':'none');
+  document.querySelectorAll('.go').forEach(el=>el.style.display=lang==='gu'?'':'none');
+  document.getElementById('btn-en').classList.toggle('active',lang==='en');
+  document.getElementById('btn-gu').classList.toggle('active',lang==='gu');
+  document.documentElement.lang=lang==='en'?'en':'gu';
+}
+setLang('en');
+
+// Mobile menu
+function toggleMob(){ document.getElementById('mobMenu').classList.toggle('open'); }
+
+// Scroll reveal
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});
+},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>ro.observe(el));
+
+// Active nav
+const secs=document.querySelectorAll('section[id]');
+const nls=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id;});
+  nls.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+},{passive:true});
+</script>
+</body>
+</html>
